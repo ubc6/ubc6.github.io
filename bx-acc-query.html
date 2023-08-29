@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>不休的音符-ACC计算(unofficial)</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<h3>不休的音符 单曲ACC查询 v1.0</h3>
+查询方式: 1.在下表填入游戏结束后的数据和判定权重；2.点击下方查询按钮。</br>
+音符权重即该音符判定在游戏中占的acc比重，比如Phigros中Bad与Miss均相当于3个Good，P/G/M的比应为3:1:0（0.75，0.25，0）</br>
+S-Perfect:<input type="text" name="sp" value="" id="sp"/></br>
+sp权重:<input type="text" name="spw" value="" id="spw"/></br>
+
+Perfect:<input type="text" name="p" value="" id="p"/></br>
+p权重:<input type="text" name="pw" value="" id="pw"/></br>
+
+Great:<input type="text" name="g" value="" id="g"/></br>
+g权重:<input type="text" name="gw" value="" id="gw"/></br>
+
+Miss:<input type="text" name="m" value="" id="m"/></br>
+m权重:<input type="text" name="mw" value="" id="mw"/></br>
+
+总物量(note):<input type="number" name="note" value="" id="note"/></br>
+
+<input type="button" value="计算" onclick="sum();"/> <input type="button" value="使用GT战队默认权重" onclick="gtdefault();"/>
+<input type="button" value="清空物量" onclick="clearn();"/> <input type="button" value="清空权重" onclick="clearw();"/> </br>
+</br>
+acc:<input type="text" name="result" value="" readonly="true" id="result"/></br>
+已判定音符的数量:<input type="a1" name="result" value="" readonly="true" id="a1"/></br>
+</br>
+
+<script>
+function sum() {
+ var sp1 = document.getElementById("sp").value;
+ var p1 = document.getElementById("p").value;
+ var g1 = document.getElementById("g").value;
+ var m1 = document.getElementById("m").value;
+ var spw1 = document.getElementById("spw").value;
+ var pw1 = document.getElementById("pw").value;
+ var gw1 = document.getElementById("gw").value;
+ var mw1 = document.getElementById("mw").value;
+ var note1 = document.getElementById("note").value;
+ document.getElementById("result").value = (sp1*spw1 + p1*pw1 + g1*gw1 + m1*mw1)/note1;
+ document.getElementById("a1").value = sp1*1 + p1*1 +g1*1+m1*1;
+<!-- parseInt取整 -->
+}
+</script>
+
+<script>
+function gtdefault() {
+
+document.getElementById("spw").value = 1.00;
+document.getElementById("pw").value = 0.80;
+document.getElementById("gw").value = 0.20;
+document.getElementById("mw").value = 0.00;
+}
+</script>
+
+<script>
+function clearw() {
+
+document.getElementById("spw").value = "";
+document.getElementById("pw").value = "";
+document.getElementById("gw").value = "";
+document.getElementById("mw").value = "";
+}
+</script>
+
+<script>
+function clearn() {
+
+document.getElementById("sp").value = "";
+document.getElementById("p").value = "";
+document.getElementById("g").value = "";
+document.getElementById("m").value = "";
+}
+</script>
+
+
+1.总物量不知道你也可以填写你已判定音符的数量，但是会导致很不准(因为长条漏了只算一个miss)；</br>
+2.由于游戏性质几乎达不到理论最高分(包括但不限于使用道具，在合适的地方开Fever)，所以建议以acc为考量；</br>
+3.该页面仅供交流使用。</br>
+如果后续关注此页面的人较多我会考虑制作段位单曲查询(可能与实际单曲acc差别较大)
+</br>
+ACC计算方式： ( sp*sp权重 + p*p权重 + g*g权重 + m*m权重 ) / 总键数</br>
+一般以95%或96%为过段基准。</br>
+
+</script>
+</form>
+</body>
+</html>
